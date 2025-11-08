@@ -15,13 +15,14 @@ app.use(cors({
     credentials:true
 }))
 
-app.use(',api/auth',authRoutes);
-app.use('api/users',userRoutes);
-app.use((err:any,req:any,res:any,next:any)=>{
-    console.log(err);
-    response.status(500).json({
-        message:"intrnak serer eroor "
-    })
-})
+app.use('/api/auth',authRoutes);
+app.use('/api/users',userRoutes);
+app.use((err: any, req: any, res: any, next: any) => {
+    console.error(err);
+    res.status(500).json({
+        message: "internal server error"
+    });
+});
+
 
 export default app;
